@@ -27,11 +27,15 @@ public class DeleteExhibitionRequestDto {
     public static Exhibition toEntity(Exhibition exhibition) {
         return Exhibition.builder()
                 .exhibitionId(exhibition.getExhibitionId())
-                .exhibitionId(exhibition.getExhibitionId())
                 .name(exhibition.getName())
                 .description(exhibition.getDescription())
+                .rewardType(exhibition.getRewardType())
+                .bannerStartDate(exhibition.getBannerStartDate())
+                .bannerEndDate(exhibition.getBannerEndDate())
+                .willShow(exhibition.isWillShow())
                 .startDate(exhibition.getStartDate())
                 .endDate(exhibition.getEndDate())
+                .deleted(true)
                 .build();
     }
 }
