@@ -1,6 +1,5 @@
 package com.promptoven.exhibitionservice.common.domain;
 
-import com.promptoven.exhibitionservice.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,12 +11,12 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Exhibition extends BaseEntity {
+public class Exhibition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exhibition_id")
-    private Long id;
+    private Long exhibitionId;
 
     @Comment("기획전 명")
     @Column(nullable = false, length = 50)
@@ -43,14 +42,38 @@ public class Exhibition extends BaseEntity {
     @Column(nullable = false)
     private boolean willShow;
 
+    @Comment("기획전 시작일")
+    @Column(nullable = false)
+    private LocalDateTime startDate;
+
+    @Comment("기획전 종료일")
+    @Column(nullable = false)
+    private LocalDateTime endDate;
+
+    @Comment("삭제 여부")
+    @Column(nullable = false)
+    private boolean deleted;
+
     @Builder
-    public Exhibition(Long id, String name, String description, String rewardType, LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow) {
-        this.id = id;
+    public Exhibition(Long exhibitionId,
+                      String name,
+                      String description,
+                      String rewardType,
+                      LocalDateTime bannerStartDate,
+                      LocalDateTime bannerEndDate,
+                      boolean willShow,
+                      LocalDateTime startDate,
+                      LocalDateTime endDate,
+                      boolean deleted) {
+        this.exhibitionId = exhibitionId;
         this.name = name;
         this.description = description;
         this.rewardType = rewardType;
         this.bannerStartDate = bannerStartDate;
         this.bannerEndDate = bannerEndDate;
         this.willShow = willShow;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.deleted = deleted;
     }
 }

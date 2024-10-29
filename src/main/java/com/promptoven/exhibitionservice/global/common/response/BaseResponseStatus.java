@@ -21,8 +21,8 @@ public enum BaseResponseStatus {
     /*
      * 404 NOT_FOUND: 리소스를 찾을 수 없음
      */
-    DUPLICATE_CATEGORY_NAME(HttpStatus.CONFLICT, false, "중복된 카테고리 이름입니다."),
-    CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, false, "카테고리 데이터를 찾지 못했습니다."),
+    DUPLICATE_EXHIBITION_NAME(HttpStatus.CONFLICT, false, "이미 존재하는 기획전 이름입니다."),
+    EXHIBITION_NOT_FOUND(HttpStatus.NOT_FOUND, false, "기획전을 찾을 수 없습니다."),
     INVALID_CSV_FORMAT(HttpStatus.BAD_REQUEST, false, "잘못된 CSV 파일 형식입니다."),
     NOT_FOUND_DATA(HttpStatus.NOT_FOUND, false, "데이터를 찾을 수 없습니다."),
     /*
