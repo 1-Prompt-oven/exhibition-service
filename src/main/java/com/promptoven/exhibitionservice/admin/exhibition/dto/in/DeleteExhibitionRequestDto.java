@@ -1,6 +1,6 @@
-package com.promptoven.exhibitionservice.admin.banner.dto.in;
+package com.promptoven.exhibitionservice.admin.exhibition.dto.in;
 
-import com.promptoven.exhibitionservice.admin.banner.vo.in.DeleteExhibitionRequestVo;
+import com.promptoven.exhibitionservice.admin.exhibition.vo.in.DeleteExhibitionRequestVo;
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import lombok.Builder;
 import lombok.Getter;

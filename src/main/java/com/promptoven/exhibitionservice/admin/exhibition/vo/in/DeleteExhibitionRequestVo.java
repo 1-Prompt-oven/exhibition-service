@@ -1,4 +1,4 @@
-package com.promptoven.exhibitionservice.admin.banner.vo.in;
+package com.promptoven.exhibitionservice.admin.exhibition.vo.in;
 
 import lombok.Builder;
 import lombok.Getter;

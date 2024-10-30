@@ -1,4 +1,4 @@
-package com.promptoven.exhibitionservice.admin.banner.vo.in;
+package com.promptoven.exhibitionservice.admin.exhibition.vo.in;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class AddExhibitionRequestVo {
+public class UpdateExhibitionRequestVo {
+
+    private Long exhibitionId;
     private String name;
     private String description;
     private String rewardType;
@@ -19,9 +21,10 @@ public class AddExhibitionRequestVo {
     private LocalDateTime endDate;
 
     @Builder
-    public AddExhibitionRequestVo(String name, String description, String rewardType,
-                                  LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
-                                  LocalDateTime startDate, LocalDateTime endDate) {
+    public UpdateExhibitionRequestVo(Long exhibitionId, String name, String description, String rewardType,
+                                     LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
+                                     LocalDateTime startDate, LocalDateTime endDate) {
+        this.exhibitionId = exhibitionId;
         this.name = name;
         this.description = description;
         this.rewardType = rewardType;

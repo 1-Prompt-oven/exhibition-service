@@ -1,9 +1,9 @@
-package com.promptoven.exhibitionservice.admin.banner.application;
+package com.promptoven.exhibitionservice.admin.exhibition.application;
 
-import com.promptoven.exhibitionservice.admin.banner.dto.in.AddExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.dto.in.DeleteExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.dto.in.UpdateExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.infrastructure.AdminExhibitionRepository;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.AddExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.DeleteExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.UpdateExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.infrastructure.AdminExhibitionRepository;
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import com.promptoven.exhibitionservice.global.common.response.BaseResponseStatus;
 import com.promptoven.exhibitionservice.global.error.BaseException;

@@ -1,12 +1,12 @@
-package com.promptoven.exhibitionservice.admin.banner.presentation;
+package com.promptoven.exhibitionservice.admin.exhibition.presentation;
 
-import com.promptoven.exhibitionservice.admin.banner.application.AdminExhibitionService;
-import com.promptoven.exhibitionservice.admin.banner.dto.in.AddExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.dto.in.DeleteExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.dto.in.UpdateExhibitionRequestDto;
-import com.promptoven.exhibitionservice.admin.banner.vo.in.AddExhibitionRequestVo;
-import com.promptoven.exhibitionservice.admin.banner.vo.in.DeleteExhibitionRequestVo;
-import com.promptoven.exhibitionservice.admin.banner.vo.in.UpdateExhibitionRequestVo;
+import com.promptoven.exhibitionservice.admin.exhibition.application.AdminExhibitionService;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.AddExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.DeleteExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.dto.in.UpdateExhibitionRequestDto;
+import com.promptoven.exhibitionservice.admin.exhibition.vo.in.AddExhibitionRequestVo;
+import com.promptoven.exhibitionservice.admin.exhibition.vo.in.DeleteExhibitionRequestVo;
+import com.promptoven.exhibitionservice.admin.exhibition.vo.in.UpdateExhibitionRequestVo;
 import com.promptoven.exhibitionservice.global.common.response.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

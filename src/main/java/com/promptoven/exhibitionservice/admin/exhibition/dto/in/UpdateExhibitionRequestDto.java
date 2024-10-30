@@ -1,6 +1,6 @@
-package com.promptoven.exhibitionservice.admin.banner.dto.in;
+package com.promptoven.exhibitionservice.admin.exhibition.dto.in;
 
-import com.promptoven.exhibitionservice.admin.banner.vo.in.AddExhibitionRequestVo;
+import com.promptoven.exhibitionservice.admin.exhibition.vo.in.UpdateExhibitionRequestVo;
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class AddExhibitionRequestDto {
+public class UpdateExhibitionRequestDto {
+
+    private Long exhibitionId;
     private String name;
     private String description;
     private String rewardType;
@@ -21,9 +23,10 @@ public class AddExhibitionRequestDto {
     private LocalDateTime endDate;
 
     @Builder
-    public AddExhibitionRequestDto(String name, String description, String rewardType,
-                                   LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
-                                   LocalDateTime startDate, LocalDateTime endDate) {
+    public UpdateExhibitionRequestDto(Long exhibitionId, String name, String description, String rewardType,
+                                      LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
+                                      LocalDateTime startDate, LocalDateTime endDate) {
+        this.exhibitionId = exhibitionId;
         this.name = name;
         this.description = description;
         this.rewardType = rewardType;
@@ -34,21 +37,23 @@ public class AddExhibitionRequestDto {
         this.endDate = endDate;
     }
 
-    public static AddExhibitionRequestDto toDto(AddExhibitionRequestVo addExhibitionRequestVo) {
-        return AddExhibitionRequestDto.builder()
-                .name(addExhibitionRequestVo.getName())
-                .description(addExhibitionRequestVo.getDescription())
-                .rewardType(addExhibitionRequestVo.getRewardType())
-                .bannerStartDate(addExhibitionRequestVo.getBannerStartDate())
-                .bannerEndDate(addExhibitionRequestVo.getBannerEndDate())
-                .willShow(addExhibitionRequestVo.isWillShow())
-                .startDate(addExhibitionRequestVo.getStartDate())
-                .endDate(addExhibitionRequestVo.getEndDate())
+    public static UpdateExhibitionRequestDto toDto(UpdateExhibitionRequestVo vo) {
+        return UpdateExhibitionRequestDto.builder()
+                .exhibitionId(vo.getExhibitionId())
+                .name(vo.getName())
+                .description(vo.getDescription())
+                .rewardType(vo.getRewardType())
+                .bannerStartDate(vo.getBannerStartDate())
+                .bannerEndDate(vo.getBannerEndDate())
+                .willShow(vo.isWillShow())
+                .startDate(vo.getStartDate())
+                .endDate(vo.getEndDate())
                 .build();
     }
 
     public Exhibition toEntity() {
         return Exhibition.builder()
+                .exhibitionId(exhibitionId)
                 .name(name)
                 .description(description)
                 .rewardType(rewardType)

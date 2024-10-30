@@ -1,4 +1,4 @@
-package com.promptoven.exhibitionservice.admin.banner.infrastructure;
+package com.promptoven.exhibitionservice.admin.exhibition.infrastructure;
 
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import org.springframework.data.jpa.repository.JpaRepository;
