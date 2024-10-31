@@ -24,10 +24,15 @@ public class Banner {
     @Column(nullable = false)
     private Long exhibitionId;
 
+    @Comment("배너 순서")
+    @Column(nullable = false)
+    private int bannerOrder;
+
     @Builder
-    public Banner(Long id, String imageUrl, Long exhibitionId) {
+    public Banner(Long id, String imageUrl, Long exhibitionId, int bannerOrder) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.exhibitionId = exhibitionId;
+        this.bannerOrder = bannerOrder;
     }
 }

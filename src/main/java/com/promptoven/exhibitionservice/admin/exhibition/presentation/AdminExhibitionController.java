@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@Tag(name = "기획전 관리 API", description = "기획전 관련 API endpoints")
-@RequestMapping("/admin/exhibition")
+@Tag(name = "기획전 관리자 API", description = "기획전 관련 API endpoints")
+@RequestMapping("/v1/admin/exhibition")
 public class AdminExhibitionController {
 
     private final AdminExhibitionService adminExhibitionService;
