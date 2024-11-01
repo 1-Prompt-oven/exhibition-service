@@ -23,7 +23,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
     @Override
     public List<GetExhibitionsResponseDto> getExhibitions() {
 
-        List<Exhibition> exhibitions = exhibitionRepository.findAll();
+        // 삭제 되지 않은 기획전 모두 조회
+        List<Exhibition> exhibitions = exhibitionRepository.findAllByDeletedFalse();
 
         return exhibitions.stream()
                 .map(exhibition -> {
