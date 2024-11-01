@@ -18,9 +18,9 @@ public class UpdateExhibitionRequestDto {
     private String name;
     private String description;
     private String rewardType;
-    private LocalDateTime bannerStartDate;
-    private LocalDateTime bannerEndDate;
-    private boolean willShow;
+//    private LocalDateTime bannerStartDate;
+//    private LocalDateTime bannerEndDate;
+//    private boolean willShow;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
@@ -29,16 +29,16 @@ public class UpdateExhibitionRequestDto {
 
     @Builder
     public UpdateExhibitionRequestDto(Long exhibitionId, String name, String description, String rewardType,
-                                      LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
+//                                      LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
                                       LocalDateTime startDate, LocalDateTime endDate,
                                       List<BannerInfo> bannerInfos, List<Long> productIds) {
         this.exhibitionId = exhibitionId;
         this.name = name;
         this.description = description;
         this.rewardType = rewardType;
-        this.bannerStartDate = bannerStartDate;
-        this.bannerEndDate = bannerEndDate;
-        this.willShow = willShow;
+//        this.bannerStartDate = bannerStartDate;
+//        this.bannerEndDate = bannerEndDate;
+//        this.willShow = willShow;
         this.startDate = startDate;
         this.endDate = endDate;
         this.bannerInfos = bannerInfos;
@@ -51,9 +51,9 @@ public class UpdateExhibitionRequestDto {
                 .name(vo.getName())
                 .description(vo.getDescription())
                 .rewardType(vo.getRewardType())
-                .bannerStartDate(vo.getBannerStartDate())
-                .bannerEndDate(vo.getBannerEndDate())
-                .willShow(vo.isWillShow())
+//                .bannerStartDate(vo.getBannerStartDate())
+//                .bannerEndDate(vo.getBannerEndDate())
+//                .willShow(vo.isWillShow())
                 .startDate(vo.getStartDate())
                 .endDate(vo.getEndDate())
                 .bannerInfos(vo.getBannerInfos().stream()
@@ -69,9 +69,9 @@ public class UpdateExhibitionRequestDto {
                 .name(this.name)
                 .description(this.description)
                 .rewardType(this.rewardType)
-                .bannerStartDate(this.bannerStartDate)
-                .bannerEndDate(this.bannerEndDate)
-                .willShow(this.willShow)
+//                .bannerStartDate(this.bannerStartDate)
+//                .bannerEndDate(this.bannerEndDate)
+//                .willShow(this.willShow)
                 .startDate(this.startDate)
                 .endDate(this.endDate)
                 .deleted(false)
