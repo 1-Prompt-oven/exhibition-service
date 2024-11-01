@@ -51,14 +51,38 @@ public class AdminExhibitionServiceImpl implements AdminExhibitionService {
         }
     }
 
+    @Transactional
     @Override
     public void updateExhibition(UpdateExhibitionRequestDto updateExhibitionRequestDto) {
-
-        adminExhibitionRepository.findById(updateExhibitionRequestDto.getExhibitionId())
+        // 기존 Exhibition 조회
+        Exhibition existingExhibition = adminExhibitionRepository.findById(updateExhibitionRequestDto.getExhibitionId())
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.EXHIBITION_NOT_FOUND));
 
-        adminExhibitionRepository.save(updateExhibitionRequestDto.toEntity());
+        // DTO의 값을 가진 새로운 Exhibition 엔티티 생성 (Id 포함)
+        Exhibition updatedExhibition = updateExhibitionRequestDto.toEntity();
 
+        // 기존 값과 새로운 값을 비교하고 변경 사항 저장
+        adminExhibitionRepository.save(updatedExhibition);
+
+        // 배너와 기획전 상품 업데이트
+        adminBannerRepository.deleteByExhibitionId(existingExhibition.getExhibitionId());
+        for (UpdateExhibitionRequestDto.BannerInfo bannerInfo : updateExhibitionRequestDto.getBannerInfos()) {
+            Banner banner = Banner.builder()
+                    .imageUrl(bannerInfo.getImageUrl())
+                    .exhibitionId(existingExhibition.getExhibitionId())
+                    .bannerOrder(bannerInfo.getBannerOrder())
+                    .build();
+            adminBannerRepository.save(banner);
+        }
+
+        adminExhibitionProductRepository.deleteByExhibitionId(existingExhibition.getExhibitionId());
+        for (Long productId : updateExhibitionRequestDto.getProductIds()) {
+            ExhibitionProduct exhibitionProduct = ExhibitionProduct.builder()
+                    .exhibitionId(existingExhibition.getExhibitionId())
+                    .productId(productId)
+                    .build();
+            adminExhibitionProductRepository.save(exhibitionProduct);
+        }
     }
 
     @Override
