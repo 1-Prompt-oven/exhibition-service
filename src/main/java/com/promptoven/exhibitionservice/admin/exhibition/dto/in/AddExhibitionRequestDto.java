@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
@@ -19,11 +21,14 @@ public class AddExhibitionRequestDto {
     private boolean willShow;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private List<BannerInfo> bannerInfos;
+    private List<Long> productIds;
 
     @Builder
     public AddExhibitionRequestDto(String name, String description, String rewardType,
                                    LocalDateTime bannerStartDate, LocalDateTime bannerEndDate, boolean willShow,
-                                   LocalDateTime startDate, LocalDateTime endDate) {
+                                   LocalDateTime startDate, LocalDateTime endDate,
+                                   List<BannerInfo> bannerInfos, List<Long> productIds) {
         this.name = name;
         this.description = description;
         this.rewardType = rewardType;
@@ -32,6 +37,8 @@ public class AddExhibitionRequestDto {
         this.willShow = willShow;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.bannerInfos = bannerInfos;
+        this.productIds = productIds;
     }
 
     public static AddExhibitionRequestDto toDto(AddExhibitionRequestVo addExhibitionRequestVo) {
@@ -44,6 +51,14 @@ public class AddExhibitionRequestDto {
                 .willShow(addExhibitionRequestVo.isWillShow())
                 .startDate(addExhibitionRequestVo.getStartDate())
                 .endDate(addExhibitionRequestVo.getEndDate())
+                .bannerInfos(
+                        addExhibitionRequestVo.getBannerInfos().stream()
+                                .map(bannerInfo -> new AddExhibitionRequestDto.BannerInfo(
+                                        bannerInfo.getImageUrl(),
+                                        bannerInfo.getBannerOrder()
+                                ))
+                                .collect(Collectors.toList()))
+                .productIds(addExhibitionRequestVo.getProductIds())
                 .build();
     }
 
@@ -59,5 +74,18 @@ public class AddExhibitionRequestDto {
                 .endDate(endDate)
                 .deleted(false)
                 .build();
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class BannerInfo {
+        private String imageUrl;
+        private int bannerOrder;
+
+        @Builder
+        public BannerInfo(String imageUrl, int bannerOrder) {
+            this.imageUrl = imageUrl;
+            this.bannerOrder = bannerOrder;
+        }
     }
 }
