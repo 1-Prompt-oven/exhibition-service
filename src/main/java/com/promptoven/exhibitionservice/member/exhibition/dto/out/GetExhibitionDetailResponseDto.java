@@ -4,12 +4,13 @@ import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionDetailResponseVo;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Builder
 @Getter
+@NoArgsConstructor
 public class GetExhibitionDetailResponseDto {
     private Long id;
     private String name;

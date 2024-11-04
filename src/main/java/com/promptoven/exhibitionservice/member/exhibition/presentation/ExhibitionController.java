@@ -3,8 +3,10 @@ package com.promptoven.exhibitionservice.member.exhibition.presentation;
 
 import com.promptoven.exhibitionservice.global.common.response.BaseResponse;
 import com.promptoven.exhibitionservice.member.exhibition.application.ExhibitionService;
+import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetBannerResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionDetailResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionsResponseDto;
+import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetBannerResponseVo;
 import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionDetailResponseVo;
 import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionsResponseVo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,4 +43,16 @@ public class ExhibitionController {
     public BaseResponse<GetExhibitionDetailResponseVo> getExhibitionDetail(@PathVariable Long exhibitionId) {
         return new BaseResponse<>(GetExhibitionDetailResponseDto.toVo(exhibitionService.getExhibitionDetail(exhibitionId)));
     }
+
+    @Operation(summary = "기획전 배너 조회", description = "기획전 배너 조회")
+    @GetMapping("/banners/{exhibitionId}")
+    public BaseResponse<List<GetBannerResponseVo>> getBanners(@PathVariable Long exhibitionId) {
+        return new BaseResponse<>(
+                exhibitionService.getBanners(exhibitionId)
+                        .stream()
+                        .map(GetBannerResponseDto::toVo)
+                        .toList()
+        );
+    }
+
 }
