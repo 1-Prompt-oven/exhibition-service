@@ -3,12 +3,15 @@ package com.promptoven.exhibitionservice.member.exhibition.presentation;
 
 import com.promptoven.exhibitionservice.global.common.response.BaseResponse;
 import com.promptoven.exhibitionservice.member.exhibition.application.ExhibitionService;
+import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionDetailResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionsResponseDto;
+import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionDetailResponseVo;
 import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionsResponseVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +34,11 @@ public class ExhibitionController {
                         .map(GetExhibitionsResponseDto::toVo)
                         .toList()
         );
+    }
+
+    @Operation(summary = "기획전 상세 조회", description = "기획전 상세 조회")
+    @GetMapping("/{exhibitionId}")
+    public BaseResponse<GetExhibitionDetailResponseVo> getExhibitionDetail(@PathVariable Long exhibitionId) {
+        return new BaseResponse<>(GetExhibitionDetailResponseDto.toVo(exhibitionService.getExhibitionDetail(exhibitionId)));
     }
 }
