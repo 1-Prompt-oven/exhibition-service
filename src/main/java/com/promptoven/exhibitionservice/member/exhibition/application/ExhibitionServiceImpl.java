@@ -4,6 +4,7 @@ import com.promptoven.exhibitionservice.common.domain.Banner;
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import com.promptoven.exhibitionservice.global.common.response.BaseResponseStatus;
 import com.promptoven.exhibitionservice.global.error.BaseException;
+import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetBannerResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionDetailResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.dto.out.GetExhibitionsResponseDto;
 import com.promptoven.exhibitionservice.member.exhibition.infrastructure.BannerRepository;
@@ -56,5 +57,16 @@ public class ExhibitionServiceImpl implements ExhibitionService {
         List<Long> productIds = exhibitionProductRepository.findProductIdsByExhibitionId(exhibitionId);
 
         return GetExhibitionDetailResponseDto.fromEntity(exhibition, productIds);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<GetBannerResponseDto> getBanners(Long exhibitionId) {
+        // exhibitionId에 해당하는 모든 Banner 조회
+        List<Banner> banners = bannerRepository.findAllByExhibitionId(exhibitionId);
+
+        return banners.stream()
+                .map(GetBannerResponseDto::fromEntity)
+                .toList();
     }
 }
