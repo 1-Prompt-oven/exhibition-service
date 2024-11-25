@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class AdminExhibitionServiceImpl implements AdminExhibitionService {
@@ -33,22 +35,24 @@ public class AdminExhibitionServiceImpl implements AdminExhibitionService {
 
         Exhibition exhibition = adminExhibitionRepository.save(exhibitionRequestDto.toEntity());
 
-        for (AddExhibitionRequestDto.BannerInfo bannerInfo : exhibitionRequestDto.getBannerInfos()) {
-            Banner banner = Banner.builder()
-                    .imageUrl(bannerInfo.getImageUrl())
-                    .exhibitionId(exhibition.getExhibitionId())
-                    .bannerOrder(bannerInfo.getBannerOrder())
-                    .build();
-            adminBannerRepository.save(banner);
-        }
+        // 배너 생성 및 저장
+        List<Banner> banners = exhibitionRequestDto.getBannerInfos().stream()
+                .map(bannerInfo -> Banner.builder()
+                        .imageUrl(bannerInfo.getImageUrl())
+                        .exhibitionId(exhibition.getExhibitionId())
+                        .bannerOrder(bannerInfo.getBannerOrder())
+                        .build())
+                .toList();
+        adminBannerRepository.saveAll(banners);
 
-        for (Long productId : exhibitionRequestDto.getProductIds()) {
-            ExhibitionProduct exhibitionProduct = ExhibitionProduct.builder()
-                    .exhibitionId(exhibition.getExhibitionId())
-                    .productId(productId)
-                    .build();
-            adminExhibitionProductRepository.save(exhibitionProduct);
-        }
+        // 상품 생성 및 저장
+        List<ExhibitionProduct> products = exhibitionRequestDto.getProductIds().stream()
+                .map(productId -> ExhibitionProduct.builder()
+                        .exhibitionId(exhibition.getExhibitionId())
+                        .productId(productId)
+                        .build())
+                .toList();
+        adminExhibitionProductRepository.saveAll(products);
     }
 
     @Transactional
@@ -64,25 +68,26 @@ public class AdminExhibitionServiceImpl implements AdminExhibitionService {
         // 기존 값과 새로운 값을 비교하고 변경 사항 저장
         adminExhibitionRepository.save(updatedExhibition);
 
-        // 배너와 기획전 상품 업데이트
+        // 기존 배너 삭제 후 새로운 배너 저장
         adminBannerRepository.deleteByExhibitionId(existingExhibition.getExhibitionId());
-        for (UpdateExhibitionRequestDto.BannerInfo bannerInfo : updateExhibitionRequestDto.getBannerInfos()) {
-            Banner banner = Banner.builder()
-                    .imageUrl(bannerInfo.getImageUrl())
-                    .exhibitionId(existingExhibition.getExhibitionId())
-                    .bannerOrder(bannerInfo.getBannerOrder())
-                    .build();
-            adminBannerRepository.save(banner);
-        }
+        List<Banner> banners = updateExhibitionRequestDto.getBannerInfos().stream()
+                .map(bannerInfo -> Banner.builder()
+                        .imageUrl(bannerInfo.getImageUrl())
+                        .exhibitionId(existingExhibition.getExhibitionId())
+                        .bannerOrder(bannerInfo.getBannerOrder())
+                        .build())
+                .toList();
+        adminBannerRepository.saveAll(banners);
 
+        // 기존 기획전 상품 삭제 후 새로운 상품 저장
         adminExhibitionProductRepository.deleteByExhibitionId(existingExhibition.getExhibitionId());
-        for (Long productId : updateExhibitionRequestDto.getProductIds()) {
-            ExhibitionProduct exhibitionProduct = ExhibitionProduct.builder()
-                    .exhibitionId(existingExhibition.getExhibitionId())
-                    .productId(productId)
-                    .build();
-            adminExhibitionProductRepository.save(exhibitionProduct);
-        }
+        List<ExhibitionProduct> products = updateExhibitionRequestDto.getProductIds().stream()
+                .map(productId -> ExhibitionProduct.builder()
+                        .exhibitionId(existingExhibition.getExhibitionId())
+                        .productId(productId)
+                        .build())
+                .toList();
+        adminExhibitionProductRepository.saveAll(products);
     }
 
     @Override
