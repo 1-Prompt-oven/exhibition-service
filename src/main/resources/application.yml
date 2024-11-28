@@ -40,6 +40,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+server:
+  port: 8085
 
 # prod 설정
 ---

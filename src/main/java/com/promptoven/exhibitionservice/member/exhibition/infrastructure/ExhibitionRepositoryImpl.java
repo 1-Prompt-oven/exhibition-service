@@ -19,7 +19,7 @@ import java.util.Optional;
 @Repository
 public class ExhibitionRepositoryImpl implements ExhibitionRepositoryCustom {
 
-    private static final int DEFAULT_PAGE_SIZE = 2;
+    private static final int DEFAULT_PAGE_SIZE = 20;
     private final JPAQueryFactory jpaQueryFactory;
     private final BannerRepository bannerRepository;
 

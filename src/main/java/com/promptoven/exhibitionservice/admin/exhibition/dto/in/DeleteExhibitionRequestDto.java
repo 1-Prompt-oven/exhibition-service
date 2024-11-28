@@ -1,6 +1,5 @@
 package com.promptoven.exhibitionservice.admin.exhibition.dto.in;
 
-import com.promptoven.exhibitionservice.admin.exhibition.vo.in.DeleteExhibitionRequestVo;
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,9 +10,9 @@ public class DeleteExhibitionRequestDto {
 
     private Long exhibitionId;
 
-    public static DeleteExhibitionRequestDto toDto(DeleteExhibitionRequestVo deleteExhibitionRequestVo) {
+    public static DeleteExhibitionRequestDto toDto(Long exhibitionId) {
         return DeleteExhibitionRequestDto.builder()
-                .exhibitionId(deleteExhibitionRequestVo.getExhibitionId())
+                .exhibitionId(exhibitionId)
                 .build();
     }
 

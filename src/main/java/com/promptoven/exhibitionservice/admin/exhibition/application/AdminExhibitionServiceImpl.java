@@ -90,6 +90,7 @@ public class AdminExhibitionServiceImpl implements AdminExhibitionService {
         adminExhibitionProductRepository.saveAll(products);
     }
 
+    @Transactional
     @Override
     public void deleteExhibition(DeleteExhibitionRequestDto deleteExhibitionRequestDto) {
 
@@ -97,7 +98,5 @@ public class AdminExhibitionServiceImpl implements AdminExhibitionService {
                 .orElseThrow(() -> new BaseException(BaseResponseStatus.EXHIBITION_NOT_FOUND));
 
         adminExhibitionRepository.save(DeleteExhibitionRequestDto.toEntity(exhibition));
-
     }
-
 }
