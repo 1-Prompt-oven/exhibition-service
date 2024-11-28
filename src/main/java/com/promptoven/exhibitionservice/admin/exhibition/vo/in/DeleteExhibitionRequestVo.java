@@ -2,16 +2,10 @@ package com.promptoven.exhibitionservice.admin.exhibition.vo.in;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
+@Builder
 @Getter
-@NoArgsConstructor
 public class DeleteExhibitionRequestVo {
 
-    private Long exhibitionId;
-
-    @Builder
-    public DeleteExhibitionRequestVo(Long exhibitionId) {
-        this.exhibitionId = exhibitionId;
-    }
+    private final Long exhibitionId;
 }

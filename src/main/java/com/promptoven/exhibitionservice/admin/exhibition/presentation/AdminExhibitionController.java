@@ -5,7 +5,6 @@ import com.promptoven.exhibitionservice.admin.exhibition.dto.in.AddExhibitionReq
 import com.promptoven.exhibitionservice.admin.exhibition.dto.in.DeleteExhibitionRequestDto;
 import com.promptoven.exhibitionservice.admin.exhibition.dto.in.UpdateExhibitionRequestDto;
 import com.promptoven.exhibitionservice.admin.exhibition.vo.in.AddExhibitionRequestVo;
-import com.promptoven.exhibitionservice.admin.exhibition.vo.in.DeleteExhibitionRequestVo;
 import com.promptoven.exhibitionservice.admin.exhibition.vo.in.UpdateExhibitionRequestVo;
 import com.promptoven.exhibitionservice.global.common.response.BaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -40,10 +39,10 @@ public class AdminExhibitionController {
     }
 
     @Operation(summary = "기획전 삭제", description = "기획전 삭제")
-    @DeleteMapping
-    public BaseResponse<Void> deleteExhibition(@RequestBody DeleteExhibitionRequestVo deleteExhibitionRequestVo) {
+    @DeleteMapping({"/{exhibitionId}"})
+    public BaseResponse<Void> deleteExhibition(@PathVariable Long exhibitionId) {
 
-        adminExhibitionService.deleteExhibition(DeleteExhibitionRequestDto.toDto(deleteExhibitionRequestVo));
+        adminExhibitionService.deleteExhibition(DeleteExhibitionRequestDto.toDto(exhibitionId));
 
         return new BaseResponse<>();
     }
