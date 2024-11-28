@@ -4,19 +4,12 @@ import com.promptoven.exhibitionservice.admin.exhibition.vo.in.DeleteExhibitionR
 import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
+@Builder
 @Getter
-@NoArgsConstructor
 public class DeleteExhibitionRequestDto {
 
     private Long exhibitionId;
-
-
-    @Builder
-    public DeleteExhibitionRequestDto(Long exhibitionId) {
-        this.exhibitionId = exhibitionId;
-    }
 
     public static DeleteExhibitionRequestDto toDto(DeleteExhibitionRequestVo deleteExhibitionRequestVo) {
         return DeleteExhibitionRequestDto.builder()
@@ -30,9 +23,6 @@ public class DeleteExhibitionRequestDto {
                 .name(exhibition.getName())
                 .description(exhibition.getDescription())
                 .rewardType(exhibition.getRewardType())
-//                .bannerStartDate(exhibition.getBannerStartDate())
-//                .bannerEndDate(exhibition.getBannerEndDate())
-//                .willShow(exhibition.isWillShow())
                 .startDate(exhibition.getStartDate())
                 .endDate(exhibition.getEndDate())
                 .deleted(true)

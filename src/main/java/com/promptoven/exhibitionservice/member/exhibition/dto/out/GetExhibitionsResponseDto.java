@@ -4,12 +4,11 @@ import com.promptoven.exhibitionservice.common.domain.Exhibition;
 import com.promptoven.exhibitionservice.member.exhibition.vo.out.GetExhibitionsResponseVo;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Getter
-@NoArgsConstructor
 public class GetExhibitionsResponseDto {
 
     private Long exhibitionId;
@@ -19,18 +18,6 @@ public class GetExhibitionsResponseDto {
     private String imageUrl;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-
-    @Builder
-    public GetExhibitionsResponseDto(Long exhibitionId, String name, String description, String rewardType,
-                                     LocalDateTime startDate, LocalDateTime endDate, String imageUrl) {
-        this.exhibitionId = exhibitionId;
-        this.name = name;
-        this.description = description;
-        this.rewardType = rewardType;
-        this.imageUrl = imageUrl;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 
     public static GetExhibitionsResponseVo toVo(GetExhibitionsResponseDto dto) {
         return GetExhibitionsResponseVo.builder()
