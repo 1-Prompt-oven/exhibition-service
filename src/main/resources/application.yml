@@ -68,6 +68,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+  cloud:
+    config:
+      name: exhibition-service,eventTopic
+      fail-fast: false
 eureka:
   client:
     serviceUrl:
