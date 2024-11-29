@@ -4,13 +4,6 @@ spring:
     active: local
   application:
     name: exhibition-service
-  config:
-    import:
-      - "optional:configserver:http://config-server:8888"
-  cloud:
-    config:
-      name: cart-service,eventTopic
-      fail-fast: false
 
 springdoc:
   api-docs:
@@ -35,6 +28,8 @@ spring:
   config:
     activate:
       on-profile: local
+    import:
+      - "optional:configserver:http://config-server:8888"
   datasource:
     url: jdbc:mysql://localhost:3306/cart_service
     username: root
@@ -59,6 +54,8 @@ spring:
   config:
     activate:
       on-profile: prod
+    import:
+      - "optional:configserver:http://config-server:8888"
   datasource:
     url: jdbc:mysql://mysql:3306/exhibition
     username: root
