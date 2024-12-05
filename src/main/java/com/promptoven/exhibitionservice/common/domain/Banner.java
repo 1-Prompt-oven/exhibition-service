@@ -9,6 +9,8 @@ import org.hibernate.annotations.Comment;
 
 @Getter
 @Entity
+@Table(name = "banner", indexes = {
+        @Index(name = "idx_banner_exhibition_id", columnList = "exhibition_id")})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Banner {
 
